@@ -29,6 +29,7 @@ class Translators:
         self.ints = ints
         self.nums = nums
 
+    # Translate Arabic to Roman
     def get_roman_from_arabic(self, arabic_numeral: int) -> str:
         if not 0 < arabic_numeral < 4000:
             raise Exception("Argument must be between 1 and 3999")
@@ -40,6 +41,7 @@ class Translators:
             res = "".join(self.roman_numeral)
         return res
 
+    # Translate Roman to Arabic
     def get_arabic_from_roman(self: str) -> int:
         ints = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
         nums = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]
@@ -74,6 +76,7 @@ class Translators:
             raise Exception("Invalid Roman numeral detected.")
         return arabic_numeral
 
+    # Translate Intergalactic to Roman
     def get_roman_from_intergalactic(self: str, word_dic: dict, roman_array: list) -> dict:
         arr = self.split()
         if arr[-1] in roman_array:
@@ -85,6 +88,7 @@ class Translators:
 
 
 class GetCurrencyValue:
+    # Get Currency value in arabic numerals
     def get_currency_value(self: str, word_dic: dict, coin_dic: dict) -> dict:
         try:
             if self[-1] == 's':
@@ -100,6 +104,7 @@ class GetCurrencyValue:
 
 
 class AnswerQuestions:
+    # Returns answer for "how much" questions
     def answer_much(self: str, word_dic: dict) -> str:
         input_line_array = self.split(' ')
         temp_str1 = ''
@@ -109,6 +114,7 @@ class AnswerQuestions:
             temp_str1 += word_dic[input_line_array[i]]
         return temp_str3 + "is " + str(Translators.get_arabic_from_roman(temp_str1))
 
+    # Returns answer for "how many" questions
     def answer_many(self: str, coin_dic: dict, word_dic: dict) -> str:
         value = ''
         input_line_array = self.split(' ')
